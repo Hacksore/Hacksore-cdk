@@ -3,6 +3,9 @@ on: [push, workflow_dispatch]
 
 ### TODO: figure out how to use the following in the other repo
 # aws cloudformation describe-stacks --stack-name DiscordPresenceStack --query "Stacks[0].Outputs[0].OutputValue" --output text
+env:
+  FIREBASE_SA_BASE64: ${{ secrets.FIREBASE_SA_BASE64 }}
+  DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
