@@ -1,7 +1,6 @@
 import { Octokit } from "octokit";
 import * as sodium from "@devtomio/sodium";
 
-
 const { GH_TOKEN } = process.env;
 
 // github client
@@ -32,6 +31,8 @@ export const setRepoSecret = async (secretName: string, secretValue: string) => 
 
   // Base64 the encrypted secret
   const encryptedEncryptionKey = Buffer.from(encryptedBytes).toString('base64');
+  console.log("Setting ip to", encryptedEncryptionKey);
+  console.log("Plaintext", secretName, secretValue);
 
   await octokit.request(
     "PUT /repos/{owner}/{repo}/actions/secrets/{secret_name}",

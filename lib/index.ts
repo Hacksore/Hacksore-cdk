@@ -4,13 +4,14 @@ import { readFileSync } from "fs";
 import * as cdk from "aws-cdk-lib";
 
 import * as dotenv from "dotenv";
-import { setRepoSecret } from "./util";
 
 dotenv.config({
   override: true,
 });
 
 const { DISCORD_TOKEN, FIREBASE_SA_BASE64, GH_TOKEN } = process.env;
+
+import { setRepoSecret } from "./util";
 
 export interface CdkProps {
   // Define construct properties here
@@ -95,7 +96,8 @@ export class DiscordPresenceStack extends cdk.Stack {
     });
 
     // set IP as a action secret
-    await setRepoSecret("BOT_HOST_IP", vmInstance.instancePublicIp);
+    // console.log("Setting IP", vmInstance.instancePublicIp);
+    // await setRepoSecret("BOT_HOST_IP", vmInstance.instancePublicIp);
 
     // TODO: seems like limitation of the CDK/CF you cant get priv key
     // await setRepoSecret("BOT_HOST_PRIVATE_KEY", keyPair.);
