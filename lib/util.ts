@@ -1,15 +1,11 @@
 import { Octokit } from "octokit";
 import * as sodium from "@devtomio/sodium";
-import * as dotenv from "dotenv";
 
-dotenv.config({
-  override: true,
-});
 
-const { GITHUB_TOKEN } = process.env;
+const { GH_TOKEN } = process.env;
 
 // github client
-const octokit = new Octokit({ auth: GITHUB_TOKEN });
+const octokit = new Octokit({ auth: GH_TOKEN });
 
 const getPublicKey = async () => {
   const pubKey = await octokit.request(

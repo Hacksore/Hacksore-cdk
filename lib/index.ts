@@ -2,16 +2,15 @@ import { Construct } from "constructs";
 import { aws_ec2 as ec2, aws_iam as iam } from "aws-cdk-lib";
 import { readFileSync } from "fs";
 import * as cdk from "aws-cdk-lib";
-import { Octokit } from "@octokit/core";
 
-// this is only for deployment local
-import "dotenv/config";
+import * as dotenv from "dotenv";
 import { setRepoSecret } from "./util";
 
-const { DISCORD_TOKEN, FIREBASE_SA_BASE64, GH_TOKEN } = process.env;
+dotenv.config({
+  override: true,
+});
 
-// github client
-const octokit = new Octokit({ auth: GH_TOKEN });
+const { DISCORD_TOKEN, FIREBASE_SA_BASE64, GH_TOKEN } = process.env;
 
 export interface CdkProps {
   // Define construct properties here
