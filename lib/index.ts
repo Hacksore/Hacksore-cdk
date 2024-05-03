@@ -2,7 +2,6 @@ import { Construct } from "constructs";
 import { aws_lightsail as lightsail } from "aws-cdk-lib";
 import { readFileSync } from "fs";
 import * as cdk from "aws-cdk-lib";
-import "dotenv/config";
 
 const { DISCORD_TOKEN, FIREBASE_SA_BASE64 } = process.env;
 
@@ -28,7 +27,7 @@ export class DiscordPresenceStack extends cdk.Stack {
 
     const lightsailAZ = "us-east-1a";
 
-    const vmInstance = new lightsail.CfnInstance(this, "DiscordPresence", {
+    new lightsail.CfnInstance(this, "DiscordPresence", {
       blueprintId: "amazon_linux_2",
       bundleId: "nano_ipv6_3_0",
       instanceName: "discord-presence",
@@ -45,11 +44,6 @@ export class DiscordPresenceStack extends cdk.Stack {
           },
         ],
       },
-    });
-
-    // store ip address
-    new cdk.CfnOutput(this, "ipAddress", {
-      value: vmInstance.attrPublicIpAddress,
     });
   }
 }
