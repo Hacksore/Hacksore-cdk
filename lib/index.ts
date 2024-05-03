@@ -30,7 +30,7 @@ export class DiscordPresenceStack extends cdk.Stack {
 
     const vmInstance = new lightsail.CfnInstance(this, "DiscordPresence", {
       blueprintId: "amazon_linux_2",
-      bundleId: "nano_ipv6_2_0",
+      bundleId: "nano_ipv6_3_0",
       instanceName: "discord-presence",
       availabilityZone: lightsailAZ,
       userData: createUserDataScript(),
