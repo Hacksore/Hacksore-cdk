@@ -26,7 +26,7 @@ curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo te
 
 # Update repo
 sudo yum update
-sudo yum install cloudflare-warp
+sudo yum install cloudflare-warp -y
 
 sudo warp-cli --accept-tos registration new
 sudo warp-cli --accept-tos mode warp+doh
