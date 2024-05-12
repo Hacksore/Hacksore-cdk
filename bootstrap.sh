@@ -15,6 +15,7 @@ sudo systemctl start docker.service
 # create env file
 echo 'FIREBASE_SA_BASE64={FIREBASE_SA_BASE64}
 DISCORD_TOKEN={DISCORD_TOKEN}
+GITHUB_ACCESS_TOKEN={GITHUB_ACCESS_TOKEN}
 ' > /home/ec2-user/.env
 
 # pull discord image

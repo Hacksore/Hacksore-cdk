@@ -3,11 +3,7 @@ import { aws_lightsail as lightsail } from "aws-cdk-lib";
 import { readFileSync } from "fs";
 import * as cdk from "aws-cdk-lib";
 
-const { DISCORD_TOKEN, FIREBASE_SA_BASE64 } = process.env;
-
-if (!DISCORD_TOKEN) throw new Error("DISCORD_TOKEN env var must be set");
-if (!FIREBASE_SA_BASE64)
-  throw new Error("FIREBASE_SA_BASE64 env var must be set");
+import "./env";
 
 /**
  * This will create a script with the environment vars replaced
@@ -17,8 +13,9 @@ const createUserDataScript = () => {
   const rawUserDataScript = readFileSync("./bootstrap.sh", "utf8");
 
   return rawUserDataScript
-    .replace("{DISCORD_TOKEN}", DISCORD_TOKEN)
-    .replace("{FIREBASE_SA_BASE64}", FIREBASE_SA_BASE64);
+    .replace("{DISCORD_TOKEN}", process.env.DISCORD_TOKEN)
+    .replace("{FIREBASE_SA_BASE64}", process.env.FIREBASE_SA_BASE64)
+    .replace("{GITHUB_ACCESS_TOKEN}", process.env.GITHUB_ACCESS_TOKEN);
 };
 
 export class DiscordPresenceStack extends cdk.Stack {
